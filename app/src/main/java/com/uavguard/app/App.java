@@ -1,6 +1,5 @@
 package com.uavguard.app;
 
-import com.uavguard.utilities.Packet;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
