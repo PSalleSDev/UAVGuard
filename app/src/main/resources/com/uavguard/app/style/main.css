@@ -1,25 +1,71 @@
 #window {
-    -fx-spacing: 20;
+    -fx-background-color: #171717;
+}
+
+#window > * {
+    -fx-padding: 20;
+}
+
+#header {
+    -fx-border-width: 1;
+    -fx-border-color: #434343;
+    -fx-border-style: none none solid node;
+    -fx-background-color: #212121;
+}
+
+#header > Label {
+    -fx-font-size: 16;
+    -fx-text-fill: #f7f7f7;
+    -fx-font-weight: bold;
+}
+
+#screen {
+    -fx-padding: 20;
+}
+
+#stream {
+    -fx-border-color: #434343;
+    -fx-border-width: 2;
+    -fx-border-style: dotted;
+    -fx-border-radius: 5;
+}
+
+#stream > Label {
+    -fx-font-size: 14;
+    -fx-text-fill: #f7f7f7;
+}
+
+#control {
+    -fx-spacing: 100;
+    -fx-background-color: red;
 }
 
 #commands {
     -fx-spacing: 20;
 }
 
-#control {
-    -fx-spacing: 100;
+#commands > * {
+    -fx-pref-width: 150px;
+    -fx-pref-height: 50px;
+    -fx-border-radius: 3;
+    -fx-border-width: 1;
+    -fx-border-color: #434343;
+    -fx-background-color: #212121;
+    -fx-text-fill: #f7f7f7;
 }
 
-#root {
-    -fx-pref-height: 200px;
+#joystick {
+    -fx-background-color: magenta;
 }
 
 #base {
-    -fx-fill: lightgray;
+    -fx-fill: #434343;
     -fx-stroke: darkgray;
     -fx-stroke-width: 2;
 }
 
 #knob {
-    -fx-fill: darkgray;
+    -fx-fill: #4287f5;
+    -fx-stroke: #425df5;
+    -fx-stroke-width: 2;
 }

@@ -33,17 +33,25 @@ public class Controller {
     public void onMouseDragged(MouseEvent e) {
         double dx = e.getX() - centerX;
         double dy = e.getY() - centerY;
-        double dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist > radius) {
-            dx = (dx / dist) * radius;
-            dy = (dy / dist) * radius;
+        double distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance > radius) {
+            dx = (dx / distance) * radius;
+            dy = (dy / distance) * radius;
         }
 
-        knob.setLayoutX(centerX + dx);
-        knob.setLayoutY(centerY + dy);
+        knob.setCenterX(centerX + dx);
+        knob.setCenterY(centerY + dy);
 
-        double normX = dx / radius;
-        double normY = dy / radius;
-        System.out.println("X: " + normX + " Y: " + normY);
+        System.out.println("X: " + dx + " Y: " + dy);
     }
 }
+
+// <Pane fx:id="joystick">
+//     <Circle fx:id="base" radius="100"/>
+//     <Circle fx:id="knob" radius="30"/>
+// </Pane>
+// <Pane fx:id="joystick">
+//     <Circle fx:id="base" layoutX="100" layoutY="100" radius="100"/>
+//     <Circle fx:id="knob" onMouseReleased="#onMouseReleased" onMouseDragged="#onMouseDragged" layoutX="100" layoutY="100" radius="30"/>
+// </Pane>
