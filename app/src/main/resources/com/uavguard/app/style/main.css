@@ -1,0 +1,25 @@
+#window {
+    -fx-spacing: 20;
+}
+
+#commands {
+    -fx-spacing: 20;
+}
+
+#control {
+    -fx-spacing: 100;
+}
+
+#root {
+    -fx-pref-height: 200px;
+}
+
+#base {
+    -fx-fill: lightgray;
+    -fx-stroke: darkgray;
+    -fx-stroke-width: 2;
+}
+
+#knob {
+    -fx-fill: darkgray;
+}
