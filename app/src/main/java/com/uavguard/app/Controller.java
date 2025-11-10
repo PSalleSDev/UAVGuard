@@ -12,51 +12,38 @@ public class Controller {
     @FXML
     private Circle knob;
 
-    private double centerX;
-    private double centerY;
+    private final double centerX = 100; // centro desejado na PANE
+    private final double centerY = 100;
     private double radius;
 
     @FXML
     public void initialize() {
         radius = base.getRadius();
-        centerX = knob.getCenterX();
-        centerY = knob.getCenterY();
-    }
-
-    @FXML
-    public void onMouseReleased(MouseEvent e) {
-        knob.setCenterX(centerX);
-        knob.setCenterY(centerY);
     }
 
     @FXML
     public void onMouseDragged(MouseEvent e) {
-        double dx = e.getX();
-        double dy = e.getY();
+        var p = knob.getParent().sceneToLocal(e.getSceneX(), e.getSceneY());
 
-        if (-100 <= dx && dx <= 100 && -100 <= dy && dy <= 100) {
-            knob.setCenterX(dx);
-            knob.setCenterY(dy);
+        double dx = p.getX() - centerX;
+        double dy = p.getY() - centerY;
+
+        double dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist > radius) {
+            dx = (dx / dist) * radius;
+            dy = (dy / dist) * radius;
         }
 
-        System.out.println("X: " + dx + " Y: " + dy);
+        knob.setLayoutX(centerX + dx);
+        knob.setLayoutY(centerY + dy);
+
+        System.out.println("DX: " + dx + " | DY: " + dy);
+    }
+
+    @FXML
+    public void onMouseReleased(MouseEvent e) {
+        knob.setLayoutX(centerX);
+        knob.setLayoutY(centerY);
     }
 }
-
-// double distance = Math.sqrt(dx * dx + dy * dy);
-// if (distance > radius) {
-//     dx = (dx / distance) * radius;
-//     dy = (dy / distance) * radius;
-// }
-
-// knob.setCenterX(centerX + dx);
-// knob.setCenterY(centerY + dy);
-
-// <Pane fx:id="joystick">
-//     <Circle fx:id="base" radius="100"/>
-//     <Circle fx:id="knob" radius="30"/>
-// </Pane>
-// <Pane fx:id="joystick">
-//     <Circle fx:id="base" layoutX="100" layoutY="100" radius="100"/>
-//     <Circle fx:id="knob" onMouseReleased="#onMouseReleased" onMouseDragged="#onMouseDragged" layoutX="100" layoutY="100" radius="30"/>
-// </Pane>

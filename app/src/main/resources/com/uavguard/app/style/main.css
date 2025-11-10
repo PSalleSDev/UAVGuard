@@ -37,7 +37,6 @@
 
 #control {
     -fx-spacing: 100;
-    -fx-background-color: red;
 }
 
 #commands {
@@ -55,7 +54,6 @@
 }
 
 #joystick {
-    -fx-background-color: magenta;
     -fx-pref-width: 200;
     -fx-pref-hieght: 200;
     -fx-min-width: 200;
