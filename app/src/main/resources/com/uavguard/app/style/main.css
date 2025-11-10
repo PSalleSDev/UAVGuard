@@ -56,12 +56,22 @@
 
 #joystick {
     -fx-background-color: magenta;
+    -fx-pref-width: 200;
+    -fx-pref-hieght: 200;
+    -fx-min-width: 200;
+    -fx-min-height: 200;
+    -fx-max-width: 200;
+    -fx-max-height: 200;
+}
+
+#stroke {
+    -fx-fill: #434343;
+    -fx-stroke: darkgray;
+    -fx-stroke-width: 2;
 }
 
 #base {
     -fx-fill: #434343;
-    -fx-stroke: darkgray;
-    -fx-stroke-width: 2;
 }
 
 #knob {

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Pane?>
 
 <GridPane fx:id="window" xmlns:fx="http://javafx.com/fxml" fx:controller="com.uavguard.app.Controller">
     <rowConstraints>
@@ -28,11 +28,12 @@
         </HBox>
     </HBox>
 
-    <HBox fx:id="control" GridPane.rowIndex="2" spacing="100">
-        <StackPane fx:id="joystick">
-            <Circle fx:id="base" radius="100"/>
-            <Circle fx:id="knob" onMouseReleased="#onMouseReleased" onMouseDragged="#onMouseDragged" radius="30"/>
-        </StackPane>
+    <HBox fx:id="control" alignment="CENTER" GridPane.rowIndex="2" spacing="100">
+        <Pane fx:id="joystick">
+            <Circle fx:id="stroke" layoutX="100" layoutY="100" radius="130"/>
+            <Circle fx:id="base" layoutX="100" layoutY="100" radius="100"/>
+            <Circle fx:id="knob" layoutX="100" layoutY="100" onMouseReleased="#onMouseReleased" onMouseDragged="#onMouseDragged" radius="30"/>
+        </Pane>
     </HBox>
 
     <HBox fx:id="commands" GridPane.rowIndex="3" alignment="CENTER">

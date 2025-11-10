@@ -18,34 +18,39 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        centerX = base.getLayoutX();
-        centerY = base.getLayoutY();
         radius = base.getRadius();
+        centerX = knob.getCenterX();
+        centerY = knob.getCenterY();
     }
 
     @FXML
     public void onMouseReleased(MouseEvent e) {
-        knob.setLayoutX(centerX);
-        knob.setLayoutY(centerY);
+        knob.setCenterX(centerX);
+        knob.setCenterY(centerY);
     }
 
     @FXML
     public void onMouseDragged(MouseEvent e) {
-        double dx = e.getX() - centerX;
-        double dy = e.getY() - centerY;
-        double distance = Math.sqrt(dx * dx + dy * dy);
+        double dx = e.getX();
+        double dy = e.getY();
 
-        if (distance > radius) {
-            dx = (dx / distance) * radius;
-            dy = (dy / distance) * radius;
+        if (-100 <= dx && dx <= 100 && -100 <= dy && dy <= 100) {
+            knob.setCenterX(dx);
+            knob.setCenterY(dy);
         }
-
-        knob.setCenterX(centerX + dx);
-        knob.setCenterY(centerY + dy);
 
         System.out.println("X: " + dx + " Y: " + dy);
     }
 }
+
+// double distance = Math.sqrt(dx * dx + dy * dy);
+// if (distance > radius) {
+//     dx = (dx / distance) * radius;
+//     dy = (dy / distance) * radius;
+// }
+
+// knob.setCenterX(centerX + dx);
+// knob.setCenterY(centerY + dy);
 
 // <Pane fx:id="joystick">
 //     <Circle fx:id="base" radius="100"/>
