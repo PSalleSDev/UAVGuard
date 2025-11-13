@@ -70,8 +70,12 @@
         </columnConstraints>
 
         <VBox fx:id="commands" alignment="CENTER" GridPane.columnIndex="0">
-            <ComboBox fx:id="commandSelect" promptText="Select command" />
-            <Button text="Send Command" />
+            <ComboBox
+                fx:id="commandSelect"
+                onAction="#onCommandSelect"
+                promptText="Select command"
+            />
+            <Button text="Send Command" onAction="#onSendCommand" />
         </VBox>
 
         <GridPane fx:id="options" alignment="CENTER" GridPane.columnIndex="1">

@@ -1,6 +1,7 @@
 package com.uavguard.app;
 
 import com.uavguard.plugin.Action;
+import com.uavguard.plugin.Command;
 import com.uavguard.plugin.Plugin;
 import com.uavguard.utilities.Manager;
 import com.uavguard.utilities.Socket;
@@ -13,6 +14,7 @@ public class Home {
 
     private Manager manager = new Manager();
     private Plugin plugin;
+    private Command command;
 
     @FXML
     private Circle lbase;
@@ -29,6 +31,9 @@ public class Home {
     @FXML
     private ComboBox<String> modelSelect;
 
+    @FXML
+    private ComboBox<String> commandSelect;
+
     private final double centerX = 100;
     private final double centerY = 100;
     private double lradius;
@@ -38,9 +43,14 @@ public class Home {
     public void initialize() {
         try {
             manager.load("/home/hasbulla/Documents/UAVGuard/plugins");
-            this.plugin = manager.plugins.get(0);
+            plugin = manager.plugins.get(0);
+            command = plugin.getCommands()[0];
             for (Plugin p : manager.plugins) {
                 modelSelect.getItems().add(p.getName());
+            }
+
+            for (Command c : plugin.getCommands()) {
+                commandSelect.getItems().add(c.getName());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,7 +81,10 @@ public class Home {
         plugin.setParameter(Action.PITCH, -(int) dy);
 
         try {
-            Socket.sendPacket(plugin.getPacket(), plugin.getPort());
+            byte[] pkt = plugin.getPacket();
+            Socket.sendPacket(pkt, plugin.getPort());
+
+            printBytes(pkt);
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -98,12 +111,10 @@ public class Home {
         plugin.setParameter(Action.THROTTLE, -(int) dy);
 
         try {
-            Socket.sendPacket(plugin.getPacket(), plugin.getPort());
+            byte[] pkt = plugin.getPacket();
+            Socket.sendPacket(pkt, plugin.getPort());
 
-            for (byte b : plugin.getPacket()) {
-                System.out.printf("%02X", b);
-            }
-            System.out.println();
+            printBytes(pkt);
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -132,6 +143,45 @@ public class Home {
     @FXML
     public void onModelSelect() {
         String selected = modelSelect.getValue();
-        System.out.println("Modelo selecionado: " + selected);
+        for (Plugin p : manager.plugins) {
+            if (p.getName() == selected) {
+                this.plugin = p;
+                command = plugin.getCommands()[0];
+
+                commandSelect.getItems().clear();
+                for (Command c : p.getCommands()) {
+                    commandSelect.getItems().add(c.getName());
+                }
+            }
+        }
+    }
+
+    @FXML
+    public void onCommandSelect() {
+        String selected = commandSelect.getValue();
+        for (Command c : plugin.getCommands()) {
+            if (c.getName() == selected) {
+                this.command = c;
+            }
+        }
+    }
+
+    @FXML
+    public void onSendCommand() {
+        try {
+            byte[] pkt = command.getPacket();
+            Socket.sendPacket(pkt, plugin.getPort());
+
+            printBytes(pkt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void printBytes(byte[] data) {
+        for (byte b : data) {
+            System.out.printf("%02X", b);
+        }
+        System.out.println();
     }
 }
