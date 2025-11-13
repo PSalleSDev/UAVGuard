@@ -3,12 +3,13 @@ package com.uavguard.app;
 import com.uavguard.plugin.Action;
 import com.uavguard.plugin.Plugin;
 import com.uavguard.utilities.Manager;
-import java.net.*;
+import com.uavguard.utilities.Socket;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
-public class Controller {
+public class Home {
 
     private Manager manager = new Manager();
     private Plugin plugin;
@@ -25,6 +26,9 @@ public class Controller {
     @FXML
     private Circle rknob;
 
+    @FXML
+    private ComboBox<String> modelSelect;
+
     private final double centerX = 100;
     private final double centerY = 100;
     private double lradius;
@@ -33,15 +37,10 @@ public class Controller {
     @FXML
     public void initialize() {
         try {
-            manager.load(
-                "/home/hasbulla/Documents/UAVGuard Plugins/e88pro/target/"
-            );
-
+            manager.load("/home/hasbulla/Documents/UAVGuard/plugins");
+            this.plugin = manager.plugins.get(0);
             for (Plugin p : manager.plugins) {
-                if (p.getName().equals("e88pro")) {
-                    this.plugin = p;
-                    break;
-                }
+                modelSelect.getItems().add(p.getName());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,7 +71,7 @@ public class Controller {
         plugin.setParameter(Action.PITCH, -(int) dy);
 
         try {
-            sendPacket(plugin.getPacket());
+            Socket.sendPacket(plugin.getPacket(), plugin.getPort());
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -99,7 +98,7 @@ public class Controller {
         plugin.setParameter(Action.THROTTLE, -(int) dy);
 
         try {
-            sendPacket(plugin.getPacket());
+            Socket.sendPacket(plugin.getPacket(), plugin.getPort());
 
             for (byte b : plugin.getPacket()) {
                 System.out.printf("%02X", b);
@@ -108,19 +107,6 @@ public class Controller {
         } catch (Exception err) {
             err.printStackTrace();
         }
-    }
-
-    public void sendPacket(byte[] data) throws Exception {
-        DatagramSocket socket = new DatagramSocket();
-        InetAddress addr = InetAddress.getByName("192.168.1.1");
-        DatagramPacket pkt = new DatagramPacket(
-            data,
-            data.length,
-            addr,
-            plugin.getPort()
-        );
-        socket.send(pkt);
-        socket.close();
     }
 
     @FXML
@@ -137,9 +123,15 @@ public class Controller {
         plugin.setParameter(Action.ROLL, 0);
 
         try {
-            sendPacket(plugin.getPacket());
+            Socket.sendPacket(plugin.getPacket(), plugin.getPort());
         } catch (Exception err) {
             err.printStackTrace();
         }
+    }
+
+    @FXML
+    public void onModelSelect() {
+        String selected = modelSelect.getValue();
+        System.out.println("Modelo selecionado: " + selected);
     }
 }

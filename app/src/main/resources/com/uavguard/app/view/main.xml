@@ -10,12 +10,13 @@
 <GridPane
     fx:id="window"
     xmlns:fx="http://javafx.com/fxml"
+    fx:controller="com.uavguard.app.Main"
     stylesheets="@../style/main.css"
 >
     <rowConstraints>
         <RowConstraints percentHeight="5" />
-        <RowConstraints percentHeight="3" />
-        <RowConstraints percentHeight="92" />
+        <RowConstraints percentHeight="3.5" />
+        <RowConstraints percentHeight="91.5" />
     </rowConstraints>
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
@@ -25,10 +26,15 @@
         <Label text="UAVGuard" />
     </HBox>
 
-    <HBox fx:id="menu" GridPane.rowIndex="1" alignment="CENTER_LEFT">
-        <Button text="Home" />
-        <Button text="Plugins" />
-        <Button text="Configs" />
+    <HBox
+        fx:id="menu"
+        GridPane.rowIndex="1"
+        alignment="CENTER_LEFT"
+        spacing="10"
+    >
+        <Button fx:id="homeButton" text="Home" />
+        <Button fx:id="pluginsButton" text="Plugins" />
+        <Button fx:id="configsButton" text="Configs" />
     </HBox>
 
     <HBox fx:id="content" alignment="CENTER" GridPane.rowIndex="2">

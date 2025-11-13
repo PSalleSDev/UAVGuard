@@ -8,17 +8,18 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
 <GridPane
     fx:id="home"
     xmlns:fx="http://javafx.com/fxml"
-    fx:controller="com.uavguard.app.Controller"
+    fx:controller="com.uavguard.app.Home"
     HBox.hgrow="ALWAYS"
     stylesheets="@../style/home.css"
 >
     <rowConstraints>
         <RowConstraints percentHeight="45" />
-        <RowConstraints percentHeight="35" />
-        <RowConstraints percentHeight="20" />
+        <RowConstraints percentHeight="30" />
+        <RowConstraints percentHeight="25" />
     </rowConstraints>
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
@@ -58,8 +59,62 @@
         </Pane>
     </HBox>
 
-    <VBox fx:id="commands" GridPane.rowIndex="2" alignment="CENTER">
-        <ComboBox fx:id="select" />
-        <Button text="Enviar comando" />
-    </VBox>
+    <GridPane fx:id="actions" GridPane.rowIndex="2" alignment="CENTER">
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS" />
+        </rowConstraints>
+
+        <columnConstraints>
+            <ColumnConstraints percentWidth="30" />
+            <ColumnConstraints percentWidth="70" />
+        </columnConstraints>
+
+        <VBox fx:id="commands" alignment="CENTER" GridPane.columnIndex="0">
+            <ComboBox fx:id="commandSelect" promptText="Select command" />
+            <Button text="Send Command" />
+        </VBox>
+
+        <GridPane fx:id="options" alignment="CENTER" GridPane.columnIndex="1">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="60" />
+                <ColumnConstraints percentWidth="40" />
+            </columnConstraints>
+
+            <VBox fx:id="deauth" alignment="CENTER" GridPane.columnIndex="0">
+                <GridPane>
+                    <rowConstraints>
+                        <RowConstraints vgrow="ALWAYS" />
+                    </rowConstraints>
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50" hgrow="ALWAYS" />
+                        <ColumnConstraints percentWidth="50" hgrow="ALWAYS" />
+                    </columnConstraints>
+                    <Button
+                        fx:id="start"
+                        text="Start Deauth"
+                        GridPane.columnIndex="0"
+                        maxWidth="Infinity"
+                        HBox.hgrow="ALWAYS"
+                    />
+                    <Button
+                        fx:id="stop"
+                        text="Stop Deauth"
+                        GridPane.columnIndex="1"
+                        maxWidth="Infinity"
+                        HBox.hgrow="ALWAYS"
+                    />
+                </GridPane>
+                <TextArea fx:id="log" editable="false" />
+            </VBox>
+
+            <VBox fx:id="model" alignment="CENTER" GridPane.columnIndex="1">
+                <Label text="Select installed UAV model" />
+                <ComboBox
+                    fx:id="modelSelect"
+                    onAction="#onModelSelect"
+                    promptText="Select model"
+                />
+            </VBox>
+        </GridPane>
+    </GridPane>
 </GridPane>

@@ -21,6 +21,7 @@
 }
 
 #menu > * {
+    -fx-font-size: 13;
     -fx-text-fill: #f7f7f7;
     -fx-background-color: transparent;
 }

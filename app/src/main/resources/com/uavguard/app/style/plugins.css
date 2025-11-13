@@ -1,0 +1,79 @@
+#search {
+}
+
+#search > Button {
+    -fx-border-radius: 3;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+    -fx-border-width: 1;
+    -fx-border-color: #262626;
+    -fx-border-width: 1 1 1 1;
+    -fx-border-radius: 0 3 3 0;
+    -fx-text-fill: #f7f7f7;
+    -fx-background-color: linear-gradient(to bottom, #353535, #323232);
+}
+
+#search > TextField {
+    -fx-border-radius: 3;
+    -fx-min-width: 300;
+    -fx-min-height: 40;
+    -fx-border-width: 1;
+    -fx-border-color: #262626;
+    -fx-border-width: 1 0 1 1;
+    -fx-border-radius: 3 0 0 3;
+    -fx-text-fill: #f7f7f7;
+    -fx-background-color: linear-gradient(to bottom, #353535, #323232);
+}
+
+#result {
+    -fx-background-color: #353535;
+    -fx-border-color: #151515;
+    -fx-border-radius: 3;
+}
+
+ScrollPane {
+    -fx-padding: 20;
+    -fx-background-color: transparent;
+}
+
+#lheader {
+    -fx-background-color: #2d2d2d;
+    -fx-border-color: #151515;
+    -fx-border-width: 2;
+    -fx-border-width: 0 0 1 0;
+}
+
+#lheader > HBox {
+    -fx-padding: 15;
+    -fx-min-height: 25;
+}
+
+#lheader > HBox > Label {
+    -fx-text-fill: #f7f7f7;
+    -fx-font-weight: bold;
+}
+
+#item {
+    -fx-border-color: #262626;
+    -fx-border-width: 2;
+    -fx-border-width: 0 0 1 0;
+}
+
+#item > HBox {
+    -fx-padding: 0;
+    -fx-min-height: 90;
+}
+
+#item > HBox > Button {
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+    -fx-border-radius: 3;
+    -fx-border-width: 1;
+    -fx-border-color: #262626;
+    -fx-text-fill: #f7f7f7;
+    -fx-background-color: linear-gradient(to bottom, #353535, #333333);
+}
+
+#item > HBox > Label {
+    -fx-text-fill: #f7f7f7;
+}

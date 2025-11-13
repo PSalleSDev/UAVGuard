@@ -1,0 +1,81 @@
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
+<GridPane
+    fx:id="home"
+    xmlns:fx="http://javafx.com/fxml"
+    HBox.hgrow="ALWAYS"
+    fx:controller="com.uavguard.app.Plugins"
+    stylesheets="@../style/plugins.css"
+>
+    <rowConstraints>
+        <RowConstraints percentHeight="10" />
+        <RowConstraints percentHeight="90" />
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+
+    <HBox fx:id="search" alignment="CENTER" GridPane.rowIndex="0">
+        <TextField fx:id="input" promptText="Search for drone models..." />
+        <Button>
+            <graphic>
+                 <fx:include source="../icons/search.xml" />
+            </graphic>
+        </Button>
+    </HBox>
+
+    <ScrollPane GridPane.rowIndex="1" fitToWidth="true" fitToHeight="true">
+            <content>
+                <VBox fx:id="result">
+                    <GridPane fx:id="lheader">
+                        <rowConstraints>
+                            <RowConstraints vgrow="ALWAYS" />
+                        </rowConstraints>
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                        </columnConstraints>
+
+                        <HBox
+                        GridPane.columnIndex="0"
+                        alignment="CENTER"
+                        HBox.hgrow="ALWAYS"
+                    >
+                            <Label text="Model" />
+                        </HBox>
+                        <HBox
+                        GridPane.columnIndex="1"
+                        alignment="CENTER"
+                        HBox.hgrow="ALWAYS"
+                    >
+                            <Label text="Version" />
+                        </HBox>
+                        <HBox
+                        GridPane.columnIndex="2"
+                        alignment="CENTER"
+                        HBox.hgrow="ALWAYS"
+                    >
+                            <Label text="Status" />
+                        </HBox>
+                        <HBox
+                        GridPane.columnIndex="3"
+                        alignment="CENTER"
+                        HBox.hgrow="ALWAYS"
+                    >
+                            <Label text="Install/Update/Uninstall" />
+                        </HBox>
+                    </GridPane>
+                </VBox>
+            </content>
+        </ScrollPane>
+</GridPane>
