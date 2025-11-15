@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
 <GridPane
     fx:id="home"
     xmlns:fx="http://javafx.com/fxml"
@@ -27,7 +28,12 @@
 
     <HBox fx:id="screen" alignment="CENTER" GridPane.rowIndex="0">
         <HBox fx:id="stream" alignment="CENTER" HBox.hgrow="ALWAYS">
-            <Label text="No video stream available now..." />
+            <ImageView
+                fx:id="cameraView"
+                HBox.hgrow="ALWAYS"
+                fitWidth="0"
+                fitHeight="0"
+            />
         </HBox>
     </HBox>
 

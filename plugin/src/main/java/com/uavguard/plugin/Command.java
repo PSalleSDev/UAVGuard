@@ -1,20 +1,14 @@
 package com.uavguard.plugin;
 
-public class Command {
+import com.uavguard.plugin.Action;
+import com.uavguard.plugin.Movement;
 
-    private String name;
-    private byte[] packet;
+public interface Command {
+    int getPort();
 
-    public Command(String name, byte[] packet) {
-        this.name = name;
-        this.packet = packet;
-    }
+    byte[] getPacket();
 
-    public String getName() {
-        return name;
-    }
+    Action[] getActions();
 
-    public byte[] getPacket() {
-        return packet;
-    }
+    void setParameter(Movement action, int percent);
 }
